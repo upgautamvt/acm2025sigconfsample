@@ -4,15 +4,18 @@ A modular LaTeX template for ACM SIGCONF 2025 research papers with improved orga
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
-- [ACM SIGCONF 2025 Format](#acm-sigconf-2025-format)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Makefile Usage](#makefile-usage)
-- [File Organization](#file-organization)
-- [Customization](#customization)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
+- [Overview](#-overview)
+- [ACM SIGCONF 2025 Format](#-acm-sigconf-2025-format)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Makefile Usage](#-makefile-usage)
+- [File Organization](#-file-organization)
+- [Customization](#-customization)
+- [Troubleshooting](#-troubleshooting)
+- [Contributing](#-contributing)
+- [References](#-references)
+- [License](#-license)
+- [Acknowledgments](#-acknowledgments)
 
 ## 🎯 Overview
 
