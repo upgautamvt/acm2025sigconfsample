@@ -1,0 +1,48 @@
+% BlueFort ACM 2025 Research Paper
+% Main document using ACM sigconf format (two-column proceedings)
+
+\documentclass[sigconf]{acmart} % this is where acmart.cls is loaded
+
+\title{BlueFort: A Novel Approach to ACM Research Paper Organization}
+
+\author{Your Name}
+\affiliation{
+  \institution{Your Institution}
+  \city{Your City}
+  \country{Your Country}
+}
+\email{your.email@institution.edu}
+
+% ACM-specific metadata (replace with actual values for submission)
+\acmConference[Conference '25]{Conference Name}{Month Day--Day, 2025}{Location, Country}
+\acmYear{2025}
+\copyrightyear{2025}
+\acmDOI{10.1145/XXXXXXX.XXXXXXX}
+
+% CCS Concepts and Keywords (required for ACM submissions)
+\ccsdesc[500]{Computer systems organization~Embedded and cyber-physical systems}
+\ccsdesc[300]{Software and its engineering~Software organization and properties}
+\keywords{ACM, LaTeX, research paper, template, organization}
+
+\input{abstract}
+
+\begin{document}
+\maketitle
+
+% Include modular section files
+\input{section-introduction}
+\input{section-background}
+\input{section-methodology}
+\input{section-results}
+\input{section-conclusion}
+\input{acks}
+
+% =============================================================================
+% BIBLIOGRAPHY SECTION
+% =============================================================================
+% Include bibliography using ACM Reference Format
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\end{document} 
