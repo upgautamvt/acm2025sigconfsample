@@ -1,0 +1,7 @@
+# VS Code project-specific shell with virtualenv
+source ~/CLionProjects/BlueFortACM2025/venv/bin/activate
+
+# Optional: re-export prompt to force showing (venv)
+if [ -n "$VIRTUAL_ENV" ]; then
+  export PS1="(venv) \u@\h:\w\$ "
+fi

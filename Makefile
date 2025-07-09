@@ -166,6 +166,63 @@ debug: checkdeps
 	done
 
 # =============================================================================
+# PYTHON ENVIRONMENT TARGETS
+# =============================================================================
+
+.PHONY: python-env python-check python-install python-clean python-figures
+python-env:
+	@echo "🐍 Setting up Python virtual environment..."
+	@if [ ! -d "venv" ]; then \
+		echo "📁 Creating virtual environment..."; \
+		python3 -m venv venv; \
+		echo "✅ Virtual environment created"; \
+	else \
+		echo "✅ Virtual environment already exists"; \
+	fi
+
+python-check:
+	@echo "🔍 Checking Python environment..."
+	@command -v python3 >/dev/null 2>&1 || { echo >&2 "❌ python3 not found. Please install Python 3.8+."; exit 1; }
+	@echo "✅ python3 found: $(shell which python3)"
+	@if [ -d "venv" ]; then \
+		echo "✅ Virtual environment exists"; \
+		echo "📦 Python packages:"; \
+		venv/bin/pip list --format=columns | head -10; \
+	else \
+		echo "⚠️  Virtual environment not found. Run 'make python-env' to create it."; \
+	fi
+
+python-install: python-env
+	@echo "📦 Installing Python packages..."
+	@venv/bin/pip install --upgrade pip
+	@venv/bin/pip install -r requirements.txt
+	@echo "✅ Python packages installed"
+
+python-clean:
+	@echo "🧹 Cleaning Python environment..."
+	@if [ -d "venv" ]; then \
+		rm -rf venv; \
+		echo "✅ Virtual environment removed"; \
+	else \
+		echo "✅ No virtual environment to clean"; \
+	fi
+
+python-figures: python-check
+	@echo "📊 Generating figures from Python scripts..."
+	@if [ -d "scripts" ]; then \
+		cd scripts && \
+		for script in *.py; do \
+			if [ -f "$$script" ]; then \
+				echo "🔄 Running $$script..."; \
+				../venv/bin/python "$$script"; \
+			fi; \
+		done; \
+		echo "✅ Figures generated in figures/ directory"; \
+	else \
+		echo "⚠️  No scripts directory found"; \
+	fi
+
+# =============================================================================
 # HELP AND DOCUMENTATION
 # =============================================================================
 
@@ -193,6 +250,13 @@ help:
 	@echo "  debug      - Show debug information"
 	@echo "  help       - Show this help message"
 	@echo ""
+	@echo "🐍 PYTHON TARGETS:"
+	@echo "  python-env     - Create Python virtual environment"
+	@echo "  python-check   - Check Python environment status"
+	@echo "  python-install - Install Python packages"
+	@echo "  python-clean   - Remove Python virtual environment"
+	@echo "  python-figures - Generate figures from Python scripts"
+	@echo ""
 	@echo "🔧 CONFIGURATION:"
 	@echo "  Main document: $(MAIN_DOC).tex"
 	@echo "  Build directory: $(BUILD_DIR)"
@@ -204,6 +268,8 @@ help:
 	@echo "  make clean        # Clean build artifacts"
 	@echo "  make view         # Open PDF"
 	@echo "  make status       # Check build status"
+	@echo "  make python-env   # Set up Python environment"
+	@echo "  make python-figures # Generate figures"
 	@echo ""
 
 # =============================================================================
@@ -240,4 +306,4 @@ install-deps:
 # PHONY TARGETS DECLARATION
 # =============================================================================
 
-.PHONY: all clean distclean spotclean quick bib view open status info debug help watch install-deps checklatex checkbibtex checkdeps 
+.PHONY: all clean distclean spotclean quick bib view open status info debug help watch install-deps checklatex checkbibtex checkdeps python-env python-check python-install python-clean python-figures 

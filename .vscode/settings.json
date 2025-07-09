@@ -1,0 +1,9 @@
+{
+  "terminal.integrated.profiles.linux": {
+    "bash (BlueFort)": {
+      "path": "bash",
+      "args": ["--rcfile", "${workspaceFolder}/.vscode/bashrc_with_venv"]
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "bash (BlueFort)"
+}

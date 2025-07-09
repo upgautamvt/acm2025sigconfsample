@@ -1,0 +1,21 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam ParticipantPadding 50
+hide footbox
+
+participant "A (Paired Device)" as A
+participant "B (Paired Device)" as B
+
+A -> B : 1. BA_A (Bluetooth Address A), LSC
+B -> A : 2. BA_B (Bluetooth Address B), LSC/SC
+A -> B : 3. AC_A (Authentication Challenge A)
+B -> A : 4. CR_B (Challenge Response B)
+A -> A : 5. Verify CR_B
+A -> B : 6. SE_A (Session Entropy A)
+B -> A : 7. Accept SK Entropy
+A -> B : 8. SD_A (Session Diversifier A)
+B -> A : 9. Accept SK Diversifier
+A -> A : 10. SK = KDF_LSC(PK, BA_B, AC_A, SE_A, SD_A)
+A -> B : 11. ct_1 = E_0(m1, SK)
+B -> A : 12. ct_2 = E_0(m2, SK)
+@enduml

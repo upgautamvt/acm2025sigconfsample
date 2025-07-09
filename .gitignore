@@ -47,9 +47,10 @@ build/*
 # =============================================================================
 # EDITOR AND IDE FILES
 # =============================================================================
-# VS Code
-.vscode/
+# VS Code - Allow project-specific settings but ignore workspace files
 *.code-workspace
+# Note: .vscode/ directory is intentionally NOT ignored to allow project-specific
+# terminal configuration and workspace settings to be shared with the team
 
 # Vim
 .vim/
@@ -185,6 +186,9 @@ venv.bak/
 # =============================================================================
 # Add any project-specific files that should be ignored here
 # For example, if you have any temporary files specific to this project
+
+# Direnv configuration (contains local environment settings)
+.envrc
 
 # =============================================================================
 # END OF GITIGNORE
